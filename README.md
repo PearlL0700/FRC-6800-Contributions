@@ -8,7 +8,11 @@ A in-depth paragraph about your project and overview of use.
 
 ## Disclaimer
 
+insert smth here
+
 ## Process
+
+insert smth here
 
 ### Dependencies
 
