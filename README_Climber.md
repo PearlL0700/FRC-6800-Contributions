@@ -27,6 +27,8 @@ The climber is implemented as a **supervisory, event-driven finite state machine
 
 Rather than executing a fully autonomous climb sequence, the system uses **human-in-the-loop control**: Driver and Operator inputs request high-level states, while the software enforces safety constraints and motion limits.
 
+This approach was chosen because the climber uses a one-way latch and operates under high mechanical load, so fully autonomous control would be risky; supervising high-level states allows the software to enforce safety while giving the Drivers the flexibility to respond to unpredictable match conditions.
+
 ### Gating & Safety Logic
 
 A software lockout mechanism prevents accidental or premature climber activation. State transitions are only allowed after an explicit Driver/Operator enable, and manual control remains gated by the same safety logic.
