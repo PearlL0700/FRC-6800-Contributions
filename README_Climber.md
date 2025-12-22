@@ -10,14 +10,14 @@ Due to team intellectual property and collaboration policies, this repository do
 
 ## Subsystem Objective
 
-The climber subsystem is responsible for lifting the robot onto the endgame structure (a cage) through controlled, software-mediated motion. The software is designed to:
+The climber subsystem is responsible for lifting the robot onto the endgame structure (a cage) through controlled, software-mediated motion. My design constraints:
 
 - Coordinate motors and sensors safely under high load
 - Prevent mechanical overextension and back-driving
-- Remain responsive to driver and operator input while enforcing safety constraints
+- Remain responsive to Driver and Operator input while enforcing safety constraints
 - Recover safely from partial or interrupted climb attempts
 - Achieve positional accuracy within ±1° of the commanded climber position
-- Complete the full climb motion in under 5 seconds under nominal match conditions
+- Complete the full climb motion in under 5 seconds under normal match conditions
 
 ## Control Architecture
 
