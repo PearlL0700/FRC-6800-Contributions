@@ -69,4 +69,4 @@ void setPIDF(valor::PIDF _pidf, int slot = 0, bool saveImmediately = false) over
 
 - Team Valor 6800 
 - CTRE Phoenix Library
-- WPILib open-source community
+- WPILib
