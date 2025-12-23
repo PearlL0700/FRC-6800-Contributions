@@ -51,6 +51,7 @@ The design and mechanical team built a **pivoting arm** that could mount onto ou
 - Grab rubber balls off the structure  
 - Avoid collisions  
 - Support conditional behavior based on **elevator position** and **Driver input**
+- Preserve the system's previous functions (don't compromise the accuracy, speed etc our old mechanism had)
 
 **Implementation Details:**  
 - **Safe movement:** Programmed state-dependent safety checks to prevent collisions with existing mechanisms (elevator, drivetrain, climber, etc.) and field obstacles  
