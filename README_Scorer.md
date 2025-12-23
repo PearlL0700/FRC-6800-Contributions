@@ -66,7 +66,7 @@ The design and mechanical team built a **pivoting arm** that could mount onto ou
 
 ### Auto Dunk
 
-After our first competition, my teammate and I analyzed robot logs and discovered a consistent **250–500 ms delay** between when the chassis was correctly positioned to score and when the gamepiece was released. I diagnosed that this latency was caused by **human reaction time**, rather than mechanical or software limitations.
+After our first competition, my teammate and I analyzed robot logs and discovered a consistent **250–500 ms delay** between when the chassis was correctly positioned to score and when the gamepiece was released. We diagnosed that this latency was caused by **human reaction time**, rather than mechanical or software limitations.
 
 To address this, we implemented **Auto Dunk**, a conditionally autonomous scoring feature that:  
 - Reduces scoring delay and Driver workload  
@@ -100,5 +100,10 @@ if (
   ) {
       state.scoringState = SCORE_STATE::SCORING;
 }
+```
 
+## Acknowledgments
+- Team Valor 6800 
+- CTRE Phoenix Library
+- WPILib
 
