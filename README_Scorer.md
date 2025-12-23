@@ -46,10 +46,22 @@ Auto Dunk is a conditionally autonomous scoring feature designed to reduce drive
 
 After our first competition, my teammate and I analyzed our robot logs and saw a consistent 250–500 millisecond delay between the moment the robot chassis was correctly positioned to score and when the gamepiece was released. We determined that this latency was caused by human reaction time rather than mechanical or software limitations.
 
-With Auto Dunk, rather than relying on the Driver to time the release manually, the subsystem continuously evaluates a set of gating conditions, including drivetrain alignment confidence, elevator positional accuracy, game piece type, scoped state, and sensor validity, before autonomously committing to the final scoring action. The Driver signals scoring intent, but the software executes the moment all spatial and safety constraints are satisfied, preventing delayed shots and misaligned releases under match pressure. This approach improves scoring consistency and cycle time in tight field tolerances while avoiding rigid scripted sequences, allowing the robot to adapt in real time to field variability.
+With Auto Dunk, rather than relying on the Driver to time the release manually, the subsystem continuously evaluates a set of gating conditions, including drivetrain alignment confidence, elevator positional accuracy, game piece type, scoped state, and sensor validity, before autonomously committing to the final scoring action. The Driver signals scoring intent, but the software executes the moment all spatial and safety constraints are satisfied, preventing delayed shots and misaligned releases under match pressure. This approach improves scoring consistency and cycle time in tight field tolerances while avoiding rigid scripted sequences, allowing the robot to adapt in real time to field variability. This feature decreased our cycle time from an average of 12 secs to an average of 8 secs.
 
+The following snippet illustrates how the subsystem evaluates multiple sensor and state conditions before committing to the scoring action:
 
-
+```cpp
+  if (
+        (state.autoDunkEnabled && !disableAutoDunk) &&
+        state.scopedState == SCOPED_STATE::SCOPED &&
+        elevatorWithinThreshold &&
+        state.gamePiece == GAME_PIECE::CORAL &&
+        (state.elevState == TWO || state.elevState == THREE || state.elevState == FOUR) &&
+        drivetrain->getAutoDunkAcceptance().all()
+    ) {
+        state.scoringState = SCORE_STATE::SCORING;
+    }
+```
 ## Acknowledgments
 
 - Team Valor 6800 
