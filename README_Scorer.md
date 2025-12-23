@@ -1,48 +1,54 @@
-# 2025 FRC Team 6800 Robot – Scorer + Elevator Subsystem
+# 2025 FRC Team 6800 Robot – Scoring Subsystem
 
-Software for the climber mechanism of Team Valor 6800’s 2025 FIRST Robotics Competition (FRC) robot, designed to safely and reliably lift the robot onto the endgame structure under high mechanical load and time pressure.
+Software for the scoring mechanism of Team Valor 6800’s 2025 FIRST Robotics Competition (FRC) robot, designed to intake, control, and score game pieces reliably.
 
 ## Project Overview & Scope
 
-This repository contains the climber subsystem code that I independently designed, implemented, wired, and tested for Team Valor 6800’s 2025 competition robot. The robot competed in multiple Texas District events and advanced to the FIRST Championship, where climb reliability and fault tolerance were critical to match success.
+This repository contains the scoring subsystem code that I designed, implemented, and tested with another student for Team Valor 6800’s 2025 competition robot. The robot competed in multiple Texas District events and advanced to the FIRST Championship, where scoring reliability and fault tolerance were critical to match success.
 
 Due to team intellectual property and collaboration policies, this repository does **not** include the full robot project and will not build or run independently. Video demonstrations and photos showing the climber operating on the physical robot are provided in my MIT Maker Portfolio.
 
 ## Subsystem Objective
 
-The climber subsystem is responsible for lifting the robot onto the endgame structure (a cage) through controlled, software-mediated motion. My design constraints:
+The scoring subsystem is responsible for intaking, transferring, and scoring 2 types of gamepieces (a cylindrical PVC pipe and a large rubber ball) across multiple heights and field locations.
 
-- Coordinate motors and sensors safely under high load
-- Prevent mechanical overextension and back-driving
-- Remain responsive to Driver and Operator input while enforcing safety constraints
-- Recover safely from partial or interrupted climb attempts
-- Achieve positional accuracy within ±1° of the commanded climber position
-- Complete the full climb motion in under 5 seconds under normal match conditions
+My design constraints:
+
+- Reliably handle two geometrically different gamepieces
+- Be able to tell when the robot has acquired a gamepiece
+- Coordinate multiple motors and sensors during handoff between mechanisms
+- Remain responsive to Driver and Operator input under match time pressure
+- Allow quick recovery from misaligned or partially intaked gamepieces, jams, double-feeds, and accidental ejection
+- Support rapid scoring cycles without requiring precise driver alignment
 
 ## Control Architecture
 
-### State-Based Climb Control
+### State-Based Control
 
-The climber is implemented as a **supervisory, event-driven finite state machine (FSM)** that supervises actuator behavior based on human intent and sensor feedback.
+The scoring subsystem is implemented as a supervisory, event-driven state machine that coordinates the elevator, pivot, intake, and funnel based on Driver/Operator intent, drivetrain alignment, and sensor feedback (e.g., beambreaks, current sensors, and CANrange devices). 
 
-Rather than executing a fully autonomous climb sequence, the system uses **human-in-the-loop control**: Driver and Operator inputs request high-level states, while the software enforces safety constraints and motion limits.
+Rather than running a fully scripted scoring routine, the system uses human-initiated, conditionally autonomous control: the Driver selects a height and initiates the scoring sequence, and the software autonomously manages alignment validation, elevator positioning, and game-piece release once all safety and accuracy conditions are satisfied.
+### Single Responsibility Principle
 
-### Gating & Safety Logic
+I chose to structure this subsystem using the Single Responsibility Principle: each state manages a specific set of parameters and behaviors, making the system modular, maintainable, and easy to extend. Conceptually, the system behaves like a Mealy machine, where outputs (elevator movement, pivot angles, intake/funnel speed) respond directly to both the current state and real-time sensor inputs, rather than purely on state alone.
 
-A software lockout mechanism prevents accidental or premature climber activation. State transitions are only allowed after an explicit Driver/Operator enable, and manual control remains gated by the same safety logic.
+This design provides several advantages:
 
-This feature was introduced after the first district competition, when I identified a high-risk failure point under match stress: an accidental climber deployment. Because the climber uses a one-way latching mechanism that allows only a single deploy–retract cycle, unintended activation would permanently disable the subsystem for the remainder of the match. The lockout mitigates this risk.
+- **Modularity:** Each state can be developed, tested, and debugged independently, isolating complexity and reducing unintended interactions.
+- **Extensibility:** New game pieces or scoring strategies can be added with minimal impact on existing code, enabling rapid iteration and scaling.
+- **Reliability:** Safety-critical decisions are consistently enforced within dedicated states.
+- **Responsiveness:** Real-time sensor feedback ensures the system reacts immediately to field variability.
+- **Efficient coordination:** Multiple motors and mechanisms operate in synchronized handoff sequences, reducing cycle time and improving scoring consistency.
+
+### Auto Dunk
+
+Auto Dunk is a conditionally autonomous scoring feature designed to reduce driver workload while preserving the Driver’s authority over when scoring occurs. 
+
+After our first competition, my teammate and I analyzed our robot logs and saw a consistent 250–500 millisecond delay between the moment the robot chassis was correctly positioned to score and when the gamepiece was released. We determined that this latency was caused by human reaction time rather than mechanical or software limitations.
+
+With Auto Dunk, rather than relying on the Driver to time the release manually, the subsystem continuously evaluates a set of gating conditions, including drivetrain alignment confidence, elevator positional accuracy, game piece type, scoped state, and sensor validity, before autonomously committing to the final scoring action. The Driver signals scoring intent, but the software executes the moment all spatial and safety constraints are satisfied, preventing delayed shots and misaligned releases under match pressure. This approach improves scoring consistency and cycle time in tight field tolerances while avoiding rigid scripted sequences, allowing the robot to adapt in real time to field variability.
 
 
-### Sensor-Based Overrides
-
-An absolute encoder (CANCoder) provides global positional feedback. Once the climber passes a defined lockout threshold or the robot has successfully completed the climb, motor output is forcibly disabled and the subsystem enters a safe holding state. This prevents mechanical overextension, back-driving, and post-climb motion.
-
-### Separate PID slots
-
-During testing, I saw that the PID gains used for pivoting the climber were not aggressive enough to reliably retract the mechanism under full robot load (when it’s lifting the robot off the ground). To address this, I implemented separate PID slots with different gain values, allowing the controller to apply more aggressive control during retraction while maintaining stability during unloaded motion.
- 
-Here is an excerpt of code, located in a separate configuration file, that defines these distinct PID slots and enables dynamic selection based on the current climber state.
 
 ## Acknowledgments
 
