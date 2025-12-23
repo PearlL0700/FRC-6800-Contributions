@@ -26,7 +26,7 @@ The scoring subsystem is responsible for intaking, transferring, and scoring two
 
 The scoring subsystem is implemented as a **supervisory, event-driven state machine** that coordinates the elevator, pivot, intake, and funnel based on Driver/Operator intent, drivetrain alignment, and sensor feedback (e.g., beambreaks, current sensors, and CANrange devices).
 
-Rather than running a fully scripted scoring routine, the system uses **human-initiated, conditionally autonomous control**: the Driver selects a height and initiates the scoring sequence, and the software autonomously manages alignment validation, elevator positioning, and game-piece release once all safety and accuracy conditions are satisfied.
+Rather than running a fully scripted scoring routine, the system uses **human-initiated, conditionally autonomous control**: the Driver selects a height and initiates the scoring sequence, and the software manages alignment validation, elevator positioning, and game-piece release once all safety and accuracy conditions are satisfied.
 
 ### Single Responsibility Principle
 
