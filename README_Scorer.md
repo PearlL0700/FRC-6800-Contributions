@@ -4,7 +4,7 @@ Software for the scoring mechanism of Team Valor 6800’s 2025 FIRST Robotics Co
 
 ## Project Overview & Scope
 
-This repository contains the scoring subsystem code that I designed, implemented, and tested **with another student*** for Team Valor 6800’s 2025 competition robot. The robot competed in multiple Texas District events and advanced to the FIRST Championship, where scoring reliability and fault tolerance were critical to match success.
+This repository contains the scoring subsystem code that I designed, implemented, and tested **with another student** for Team Valor 6800’s 2025 competition robot. The robot competed in multiple Texas District events and advanced to the FIRST Championship, where scoring reliability and fault tolerance were critical to match success.
 
 Due to team intellectual property and collaboration policies, this repository does **not** include the full robot project and will not build or run independently. Video demonstrations and photos showing the climber operating on the physical robot are provided in my MIT Maker Portfolio.
 
