@@ -101,6 +101,9 @@ if (
       state.scoringState = SCORE_STATE::SCORING;
 }
 ```
+## Reflection
+
+Working on the scoring subsystem taught me the importance of balancing human control with adaptive automation. I learned to anticipate variability on the field, misaligned game pieces, jams, and driver timing, and design software that could respond in real time while preserving operator authority. Implementing Auto Dunk and integrating the pivoting arm reinforced the value of modular design, iterative testing, and safety-critical state management, showing me that even small timing improvements or state transitions can significantly enhance performance. This project strengthened my ability to coordinate complex mechanisms, diagnose issues, and build robust, responsive systems that perform reliably in dynamic, high-pressure environments.
 
 ## Acknowledgments
 - Team Valor 6800 
