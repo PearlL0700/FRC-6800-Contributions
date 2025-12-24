@@ -67,6 +67,9 @@ void setPIDF(valor::PIDF _pidf, int slot = 0, bool saveImmediately = false) over
         if (saveImmediately) getMotor()->GetConfigurator().Apply(config.MotionMagic);
     }
 ```
+## Reflection
+Working on the climber taught me the importance of anticipating all possible use cases and failure scenarios when designing high-risk mechanisms. I learned to think several steps ahead, considering not just normal operation but also partial climbs, accidental activations, and mechanical edge cases, and to design software and control logic that reliably reduces those risks. This project reinforced that in engineering, it’s never “too safe”: careful planning, iterative testing, and robust safeguards are essential to ensure both performance and reliability under unpredictable match conditions.
+
 ## Acknowledgments
 
 - Team Valor 6800 
