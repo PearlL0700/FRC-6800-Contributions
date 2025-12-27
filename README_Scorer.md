@@ -10,7 +10,7 @@ Due to team intellectual property and collaboration policies, this repository do
 
 ## Subsystem Objective
 
-The scoring subsystem is responsible for intaking, transferring, and scoring two types of game pieces: a **cylindrical PVC pipe** and a **large rubber ball**, across multiple heights and field locations.
+The scoring subsystem is responsible for intaking, transferring, and scoring two distinct types of game pieces: a **cylindrical PVC pipe** and a **large rubber ball**, across multiple heights and field locations.
 
 **My Design Constraints:**  
 - Reliably handle two geometrically different game pieces  
