@@ -1,4 +1,4 @@
-# 2025 FRC Team 6800 Robot – Scoring Subsystem
+# PVC Shooter & Pivoting Arm – FRC Team Valor 6800 (2025)
 
 Software for the scoring mechanism of Team Valor 6800’s 2025 FIRST Robotics Competition (FRC) robot, designed to intake, control, and score game pieces reliably.
 
