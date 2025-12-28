@@ -1,4 +1,4 @@
-# 2023 FRC Team 6800 Robot – Elevator + Arm Subsystem
+# Kinematics Control for Elevator + Arm – FRC Team Valor 6800 (2023)
 
 Software for the elevator and rotating arm of Team Valor 6800’s 2023 FIRST Robotics Competition (FRC) robot, designed to intake, control, and score game pieces reliably.
 
