@@ -1,4 +1,4 @@
-# 2025 FRC Team 6800 Robot – Climber Subsystem
+# Climber Subsystem – FRC Team Valor 6800 (2025)
 
 Software for the climber mechanism of Team Valor 6800’s 2025 FIRST Robotics Competition (FRC) robot, designed to safely and reliably lift the robot onto the endgame structure under high mechanical load and time pressure.
 
