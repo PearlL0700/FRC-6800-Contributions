@@ -10,7 +10,7 @@ Due to team intellectual property and collaboration policies, this repository do
 
 Below is the code I primarily designed and implemented:
 ```cpp
-Elevarm::Positions Elevarm::reverseKinematics(frc::Pose2d pose, ElevarmSolutions solution, Direction dir) 
+Elevarm::Positions Elevarm::inverseKinematics(frc::Pose2d pose, ElevarmSolutions solution, Direction dir) 
 {
     double phi = 0.0;
     double theta = 0.0;
@@ -87,11 +87,11 @@ The elevarm subsystem is responsible for intaking and scoring two distinct types
 
 The elevator + arm subsystem is controlled using a **kinematics-based architecture**, treating the elevator and arm as a single coordinated system rather than two independent actuators. Instead of commanding raw motor positions, the software works in **task space** (end-effector pose) and converts those requests into safe, valid joint commands.
 
-### Forward and Reverse Kinematics
+### Forward and Inverse Kinematics
 
-I implemented reverse kinematics and forward kinematics to continuously track the mechanism’s real-world configuration:
+I implemented inverse kinematics and forward kinematics to continuously track the mechanism’s real-world configuration:
 
-- **Reverse kinematics (`reverseKinematics`)** converts a desired pose (x, z, wrist angle) into elevator height and arm rotation
+- **inverse kinematics (`inverseKinematics`)** converts a desired pose (x, z, wrist angle) into elevator height and arm rotation
   - Supports multiple geometric solutions (arms vs. legs) and front/back operation  
   - Takes into account bumpers and carriage height for field-accurate positioning  
   - Handles direction and solution selection to avoid unsafe arm configurations and ensure predictable motion  
@@ -102,7 +102,7 @@ I implemented reverse kinematics and forward kinematics to continuously track th
 
 ### Safety and Coordination
 
-By combining forward and reverse kinematics, the system maintains **closed-loop awareness** of the elevator–arm configuration. This prevents illegal states (like exceeding height limits or unsafe angles) and lets the elevator and arm move in coordinated trajectories instead of independently.  
+By combining forward and inverse kinematics, the system maintains **closed-loop awareness** of the elevator–arm configuration. This prevents illegal states (like exceeding height limits or unsafe angles) and lets the elevator and arm move in coordinated trajectories instead of independently.  
 
 This approach improved reliability and made debugging easier compared to directly commanding motor positions, while also providing a strong foundation for safe, state-based control and future iterations.
 
@@ -110,7 +110,7 @@ This approach improved reliability and made debugging easier compared to directl
 
 This project taught me the value of modeling physical systems mathematically instead of relying on tuning or fixed presets. As we added more functionality, controlling the elevator and arm independently led to too many edge cases, which pushed me to think about the subsystem as a single geometric system.
 
-Implementing reverse kinematics shifted my focus to where the arm should be in space (angle, height etc) rather than how each motor should move, reducing manual tuning and making behavior more predictable. Adding forward kinematics provided continuous feedback on the mechanism’s real position, which made debugging easier and helped catch issues earlier.
+Implementing inverse kinematics shifted my focus to where the arm should be in space (angle, height etc) rather than how each motor should move, reducing manual tuning and making behavior more predictable. Adding forward kinematics provided continuous feedback on the mechanism’s real position, which made debugging easier and helped catch issues earlier.
 
 Looking back, I would have formalized constraints earlier instead of layering special cases. While our approach worked given the time constraints we had, a cleaner constraint-based model would have made the system easier to maintain and scale. I also would have replaced magic numbers in the code with named variables to make it more readable, so I wouldn’t have to wonder why an offset or conversion factor was added, and to reduce the risk of errors when updating values. Overall, this project changed how I think about robotics software: strong abstractions and physical models directly improve reliability.
 

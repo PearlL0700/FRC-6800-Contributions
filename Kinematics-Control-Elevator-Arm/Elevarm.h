@@ -191,7 +191,7 @@ private:
      std::map<Piece, std::map<Direction, std::map<Position, frc::Pose2d>>> posMap;
      frc::Pose2d stowPos;
 
-    Positions reverseKinematics(frc::Pose2d pose, ElevarmSolutions, Direction); 
+    Positions inverseKinematics(frc::Pose2d pose, ElevarmSolutions, Direction); 
     frc::Pose2d forwardKinematics(Positions positions);
     Positions detectionBoxManual(double, double);
 

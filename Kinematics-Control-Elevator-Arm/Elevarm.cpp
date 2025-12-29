@@ -399,7 +399,7 @@ void Elevarm::analyzeDashboard()
 
 void Elevarm::assignOutputs()
 {    
-    Positions stowPose = reverseKinematics(stowPos, ElevarmSolutions::ELEVARM_LEGS, Direction::FRONT);
+    Positions stowPose = inverseKinematics(stowPos, ElevarmSolutions::ELEVARM_LEGS, Direction::FRONT);
     if (futureState.positionState == Position::STOW) {
         if (futureState.highStow) {
             futureState.directionState = Direction::BACK;
@@ -407,15 +407,15 @@ void Elevarm::assignOutputs()
                 futureState.positionState = Position::VERTICAL;
             else 
                 futureState.positionState = Position::SNAKE; 
-            futureState.targetPose = reverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_ARMS , futureState.directionState);
+            futureState.targetPose = inverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_ARMS , futureState.directionState);
         } else {
             futureState.targetPose = stowPose;
         }
     } else {
         if (futureState.positionState == Position::PLAYER || futureState.positionState == Position::MID || futureState.positionState == Position::HIGH || futureState.positionState == Position::HIGH_AUTO || futureState.positionState == Position::SNAKE)
-            futureState.targetPose = reverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_ARMS , futureState.directionState);
+            futureState.targetPose = inverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_ARMS , futureState.directionState);
         else 
-            futureState.targetPose = reverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_LEGS, futureState.directionState);
+            futureState.targetPose = inverseKinematics(posMap[intake->getFuturePiece()][futureState.directionState][futureState.positionState], ElevarmSolutions::ELEVARM_LEGS, futureState.directionState);
     }
 
     if (futureState.targetPose.h < 0.0) futureState.targetPose.h = 0.0;
@@ -519,7 +519,7 @@ Elevarm::Positions Elevarm::detectionBoxManual(double carriage, double arm) {
 }
 
 
-Elevarm::Positions Elevarm::reverseKinematics(frc::Pose2d pose, ElevarmSolutions solution, Direction dir) 
+Elevarm::Positions Elevarm::inverseKinematics(frc::Pose2d pose, ElevarmSolutions solution, Direction dir) 
 {
     double phi = 0.0;
     double theta = 0.0;
@@ -562,7 +562,7 @@ frc::Pose2d Elevarm::forwardKinematics(Elevarm::Positions positions)
             z = Z_CARRIAGE_FLOOR_OFFSET + Z_CARRIAGE_JOINT_OFFSET + positions.h - X_ARM_LENGTH * cos(theta);
             x = X_ARM_LENGTH * sin(theta) + X_CARRIAGE_OFFSET - X_BUMPER_WIDTH - X_HALF_WIDTH;
         }
-    // Reverse
+    // inverse
     } else {
         // Arms
         if (theta < -(M_PI / 2.0)) {
