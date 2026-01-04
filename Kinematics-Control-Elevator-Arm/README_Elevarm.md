@@ -91,7 +91,7 @@ The elevator + arm subsystem is controlled using a **kinematics-based architectu
 
 I implemented inverse kinematics and forward kinematics to continuously track the mechanism’s real-world configuration:
 
-- **inverse kinematics (`inverseKinematics`)** converts a desired pose (x, z, wrist angle) into elevator height and arm rotation
+- **Inverse kinematics (`inverseKinematics`)** converts a desired pose (x, z, wrist angle) into elevator height and arm rotation
   - Supports multiple geometric solutions (arms vs. legs) and front/back operation  
   - Takes into account bumpers and carriage height for field-accurate positioning  
   - Handles direction and solution selection to avoid unsafe arm configurations and ensure predictable motion  
