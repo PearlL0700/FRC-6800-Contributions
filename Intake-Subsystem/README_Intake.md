@@ -50,7 +50,7 @@ To increase the rate at which game pieces could be transferred to the shooter, I
 - **Game-piece agitation:** Rapidly moves the intake to shift foam balls toward the shooter
 
 **Impact:**  
-- Increased the rate at which game pieces could exit the robot
+- Increased the rate at which game pieces could exit the robot by 4 balls per second
 - Reduced delays between consecutive shots
 - Improved overall scoring cycle speed
 
