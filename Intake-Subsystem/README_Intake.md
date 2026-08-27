@@ -40,6 +40,29 @@ The system also incorporates **real-time current monitoring** to detect when the
 - **Efficient coordination:** Intake, feeder, and hopper motors operate in coordinated sequences to rapidly move game pieces through the robot  
 - **Maintainability:** Separating mechanism behavior into independent states makes the subsystem easier to modify and troubleshoot  
 
+### Intake Agitation
+
+To increase the rate at which game pieces could be transferred to the shooter, I implemented a **shimmy sequence** that rapidly alternates the intake pivot between two positions. The sequence uses timed instant commands to repeatedly move the intake in and out, agitating the foam balls and helping them exit the robot faster.
+
+**Implementation Details:**  
+- **Timed sequencing:** Alternates between `SHIMMY_IN` and `SHIMMY_OUT` states with a configurable `SHIMMY_INTERVAL`
+- **Pivot control:** Uses instant commands to change the intake pivot state without introducing unnecessary command overhead
+- **Game-piece agitation:** Rapidly moves the intake to shift foam balls toward the shooter
+
+**Impact:**  
+- Increased the rate at which game pieces could exit the robot
+- Reduced delays between consecutive shots
+- Improved overall scoring cycle speed
+
+```
+frc2::CommandPtr Intake::shimmyIntake() {
+    return frc2::SequentialCommandGroup(
+               frc2::InstantCommand([this]() { state.pivotState = PIVOT_STATE::SHIMMY_IN; }), frc2::WaitCommand(SHIMMY_INTERVAL),
+               frc2::InstantCommand([this]() { state.pivotState = PIVOT_STATE::SHIMMY_OUT; }), frc2::WaitCommand(SHIMMY_INTERVAL))
+        .ToPtr();
+}
+```
+
 ## Acknowledgments
 - Team Valor 6800 
 - CTRE Phoenix Library
