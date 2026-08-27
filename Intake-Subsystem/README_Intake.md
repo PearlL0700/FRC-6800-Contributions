@@ -54,7 +54,7 @@ To increase the rate at which game pieces could be transferred to the shooter, I
 - Reduced delays between consecutive shots
 - Improved overall scoring cycle speed
 
-```
+```cpp
 frc2::CommandPtr Intake::shimmyIntake() {
     return frc2::SequentialCommandGroup(
                frc2::InstantCommand([this]() { state.pivotState = PIVOT_STATE::SHIMMY_IN; }), frc2::WaitCommand(SHIMMY_INTERVAL),
