@@ -6,7 +6,7 @@ Software for the climber mechanism of Team Valor 6800’s 2025 FIRST Robotics Co
 
 This repository contains the climber subsystem code that I independently designed, implemented, wired, and tested for Team Valor 6800’s 2025 competition robot. The robot competed in multiple Texas District events and advanced to the FIRST Championship, where climb reliability and fault tolerance were critical to match success.
 
-Due to team intellectual property and collaboration policies, this repository does **not** include the full robot project and will not build or run independently. Video demonstrations and photos showing the climber operating on the physical robot are provided in my MIT Maker Portfolio.
+Due to team intellectual property and collaboration policies, this repository does **not** include the full robot project and will not build or run independently. Video demonstrations and photos showing the climber operating on the physical robot are provided in my portfolio.
 
 ## Subsystem Objective
 
