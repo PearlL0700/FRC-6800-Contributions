@@ -87,8 +87,6 @@ The Driver signals scoring intent, and the software executes the release **immed
 - Enabled real-time adaptation to field variability  
 - Reinforced the value of human-in-the-loop, conditionally autonomous control  
 
-**Example Code Snippet:**  
-
 ```cpp
 if (
       (state.autoDunkEnabled && !disableAutoDunk) &&
