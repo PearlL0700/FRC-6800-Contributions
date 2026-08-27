@@ -1,4 +1,4 @@
-# Shooter Subsystem – FRC Team Valor 6800 (2024)
+# Disc Shooter Subsystem – FRC Team Valor 6800 (2024)
 
 Software for the shooting mechanism of Team Valor 6800’s 2024 FIRST Robotics Competition (FRC) robot, designed to automatically configure, stage, and launch game pieces reliably across varying distances.
 

@@ -1,4 +1,4 @@
-# Shooter Subsystem – FRC Team Valor 6800 (2026)
+# Drum Shooter Subsystem – FRC Team Valor 6800 (2026)
 
 Software for the shooting mechanism of Team Valor 6800’s 2026 FIRST Robotics Competition (FRC) robot, designed to automatically configure and control the shooter for reliable scoring across varying distances.
 
@@ -13,7 +13,7 @@ Due to team intellectual property and collaboration policies, this repository do
 The shooter subsystem is responsible for launching multiple **dense foam ball** into a scoring hub from a range of distances while accounting for the robot’s position on the field.
 
 **My Design Constraints:**  
-- Reliably score game pieces across varying distances
+- Reliably score multiple game pieces at once across varying distances
 - Automatically determine appropriate flywheel speed and hood angle based on distance to the target
 - Maintain consistent shot parameters as the robot moves around the field
 - Verify that the flywheel, hood, and chassis has reached its required operating conditions before allowing the robot to shoot
