@@ -48,6 +48,19 @@ The subsystem maintains separate lookup tables for **hub shots and shuttle shots
 - Allowed the shooter to automatically adapt as the robot moved around the field
 - Created a repeatable software interface between field position and mechanical shot configuration
 
+### X-Mode Defensive Control
+
+One challenge we encountered during competition was **defensive robots contacting our chassis while we were preparing to shoot**. Even a small amount of pushing or rotation could change the robot’s orientation enough to move the shot off target. To address this, I implemented an automatic **X-mode** that activates when the robot is preparing to shoot. X-mode commands the drivetrain wheels into an X configuration, creating resistance against external forces and making it significantly harder for another robot to push or rotate our chassis. This allowed us to stabilize the robot during the critical moment of the shot without requiring the Driver to manually activate a defensive mode.
+
+I also designed X-mode to remain **fully responsive to Driver input**. Rather than locking the drivetrain for a fixed amount of time, the system continuously monitors the Driver’s movement commands. The moment the Driver moves the joystick to intentionally reposition the robot, X-mode automatically disengages and returns control of the drivetrain to the Driver. This created a balance between **automatic shot stabilization and human control**: the software protected our shooting position when we were stationary, but never prevented the Driver from reacting to defensive pressure or changing position when necessary.
+
+**Impact:**  
+- Reduced unwanted drivetrain rotation during shots  
+- Helped maintain shooting alignment when challenged by defensive robots  
+- Removed the need for the Driver to manually activate and deactivate the lock  
+- Preserved immediate Driver control whenever movement was commanded  
+- Improved the shooter’s robustness against unpredictable defensive contact  
+
 ### Shooter Readiness Validation
 
 A major challenge in rapid-cycle scoring was ensuring that the shooter was actually ready before feeding a game piece.
