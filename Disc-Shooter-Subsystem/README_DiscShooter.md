@@ -59,7 +59,7 @@ Although each mechanism operates independently, their states are coordinated to 
 
 A major challenge was allowing the robot to score from different locations without requiring the Driver to manually select a flywheel speed and pivot angle for every shot.
 
-I implemented **a line of best fit** using experimentally determined shot parameters. The subsystem calculates the robot's distance from the selected target and interpolates between predefined shot values to determine the required flywheel velocity and pivot angle. :contentReference[oaicite:3]{index=3}
+I implemented **a line of best fit** using experimentally determined shot parameters. The subsystem calculates the robot's distance from the selected target and interpolates between predefined shot values to determine the required flywheel velocity and pivot angle.
 
 The system maintains separate shot profiles for different scoring situations, allowing the shooter to use different configurations depending on the selected target and field position.
 
@@ -78,7 +78,7 @@ The system maintains separate shot profiles for different scoring situations, al
 
 ## Game-Piece Detection and Staging
 
-The shooter uses **two beam-break sensors** to track the position of a game piece as it moves through the internal intake and feeder mechanisms. The sensors allow the subsystem to automatically adjust motor behavior instead of relying entirely on Driver timing. :contentReference[oaicite:4]{index=4}
+The shooter uses **two beam-break sensors** to track the position of a game piece as it moves through the internal intake and feeder mechanisms. The sensors allow the subsystem to automatically adjust motor behavior instead of relying entirely on Driver timing.
 
 When a game piece reaches different positions within the mechanism, the intake and feeder motors respond accordingly. The system can slow, continue, or stop the motors to stage the game piece and prevent it from being overfed into the shooter. When game pieces are overfed, our shot accuracy decreases.
 
@@ -100,7 +100,7 @@ When a game piece reaches different positions within the mechanism, the intake a
 
 The internal intake and feeder mechanisms operate as part of the shooting sequence rather than as completely separate systems.
 
-During intake, the rollers move the game piece through the robot while the feeder adjusts its speed based on beam-break feedback. During shooting, both the internal intake and feeder transition into dedicated shooting states that transfer the staged game piece into the flywheels. :contentReference[oaicite:5]{index=5}
+During intake, the rollers move the game piece through the robot while the feeder adjusts its speed based on beam-break feedback. During shooting, both the internal intake and feeder transition into dedicated shooting states that transfer the staged game piece into the flywheels.
 
 The code also includes named commands that allow these feeding behaviors to be triggered during autonomous routines.
 
@@ -121,7 +121,7 @@ The code also includes named commands that allow these feeding behaviors to be t
 
 Before launching a game piece, the shooter evaluates whether its mechanisms have reached their required operating conditions.
 
-The readiness logic compares the measured flywheel velocity and pivot position against their calculated setpoints. The shooter is considered ready only when the required mechanisms are sufficiently close to their targets. :contentReference[oaicite:6]{index=6}
+The readiness logic compares the measured flywheel velocity and pivot position against their calculated setpoints. The shooter is considered ready only when the required mechanisms are sufficiently close to their targets.
 
 **Implementation Details:**  
 - **Flywheel validation:** Compares measured flywheel velocity against the target velocity  
@@ -138,7 +138,7 @@ The readiness logic compares the measured flywheel velocity and pivot position a
 
 ## Driver Feedback and Fault Recovery
 
-Because the Driver cannot always see the game piece once it enters the robot, the subsystem provides **haptic feedback through the Driver controller** when a game piece is detected at the feeder. :contentReference[oaicite:8]{index=8}
+Because the Driver cannot always see the game piece once it enters the robot, the subsystem provides **haptic feedback through the Driver controller** when a game piece is detected at the feeder.
 
 The subsystem also supports dedicated outtake states, allowing the Driver to reverse the intake and feeder when a game piece becomes misaligned or needs to be removed.
 
